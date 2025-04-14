@@ -32,7 +32,14 @@ class YouTubeService {
 
       // Get video info using ytdlp
       const info = await this.ytdlp.getInfoAsync(url);
-      
+
+      // write the info to a file for debugging
+      const fs = require('fs');
+      const path = require('path');
+      const filePath = path.join(__dirname, 'video_info.json');
+      fs.writeFileSync(filePath, JSON.stringify(info, null, 2));
+      console.log(`Video info written to ${filePath}`);
+      // Check if info is available
       if (!info) {
         throw new AppError('Failed to fetch video information', 404);
       }
@@ -50,7 +57,7 @@ class YouTubeService {
         // Get the first available subtitle track
         const subtitleLang = Object.keys(info.subtitles)[0];
         const subtitleUrl = info.subtitles[subtitleLang][0]?.url;
-        
+
         if (subtitleUrl) {
           // Fetch and parse the subtitle content
           const subtitleContent = await this.fetchSubtitleContent(subtitleUrl);
@@ -62,7 +69,7 @@ class YouTubeService {
       if (!videoInfo.transcript && info.automatic_captions && Object.keys(info.automatic_captions).length > 0) {
         const captionLang = Object.keys(info.automatic_captions)[0];
         const captionUrl = info.automatic_captions[captionLang][0]?.url;
-        
+
         if (captionUrl) {
           // Fetch and parse the caption content
           const captionContent = await this.fetchSubtitleContent(captionUrl);
@@ -93,7 +100,7 @@ class YouTubeService {
       // This is a simplified version. In a real implementation,
       // you would fetch the subtitle file and parse it based on its format
       // (e.g., SRT, VTT, etc.)
-      
+
       // For now, we'll return a placeholder
       return "This is a placeholder for the transcript content. In a real implementation, this would be the actual transcript fetched from the subtitle URL.";
     } catch (error) {
