@@ -1,21 +1,42 @@
 import { createClient } from '@supabase/supabase-js';
-import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Conditionally import expo-secure-store
+let SecureStore;
+if (Platform.OS !== 'web') {
+  // Only import on native platforms
+  SecureStore = require('expo-secure-store');
+}
 
 // Implement a custom storage adapter for React Native
 const ExpoSecureStoreAdapter = {
-  getItem: (key) => {
+  getItem: async (key) => {
+    if (Platform.OS === 'web') {
+      // Use localStorage on web
+      return localStorage.getItem(key);
+    }
     return SecureStore.getItemAsync(key);
   },
-  setItem: (key, value) => {
-    SecureStore.setItemAsync(key, value);
+  setItem: async (key, value) => {
+    if (Platform.OS === 'web') {
+      // Use localStorage on web
+      localStorage.setItem(key, value);
+      return;
+    }
+    return SecureStore.setItemAsync(key, value);
   },
-  removeItem: (key) => {
-    SecureStore.deleteItemAsync(key);
+  removeItem: async (key) => {
+    if (Platform.OS === 'web') {
+      // Use localStorage on web
+      localStorage.removeItem(key);
+      return;
+    }
+    return SecureStore.deleteItemAsync(key);
   },
 };
 
-// Use AsyncStorage for web platform
+// Create Supabase client
 const createSupabaseClient = () => {
   const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
@@ -25,14 +46,9 @@ const createSupabaseClient = () => {
     return null;
   }
 
-  // Use different storage adapters based on platform
-  const storageAdapter = Platform.OS === 'web' 
-    ? undefined // Use default localStorage for web
-    : ExpoSecureStoreAdapter;
-
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
-      storage: storageAdapter,
+      storage: ExpoSecureStoreAdapter,
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: true,
