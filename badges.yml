@@ -1,0 +1,24 @@
+build_status:
+  image: "https://img.shields.io/github/actions/workflow/user/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App/ci.yml?style=flat-square"
+  title: "Build Status"
+  url: "https://github.com/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App/actions/workflows/ci.yml"
+coverage:
+  image: "https://img.shields.io/codecov/c/github/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App?style=flat-square"
+  title: "Code Coverage"
+  url: "https://codecov.io/gh/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App"
+tech_stack:
+  image: "https://img.shields.io/badge/dynamic/json?style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2Fchirag127%2FVidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App%2Fmain%2Fpackage.json&label=Tech%20Stack&query=%24%5Bprimary%2C%24%5Bframework%5D%5D&color=blue"
+  title: "Tech Stack"
+  url: "https://github.com/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App"
+lint_format:
+  image: "https://img.shields.io/badge/lint-ruff-yellow?style=flat-square"
+  title: "Linting & Formatting"
+  url: "https://github.com/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App"
+license:
+  image: "https://img.shields.io/badge/license-CC%20BY--NC%204.0-orange?style=flat-square"
+  title: "License"
+  url: "https://github.com/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App/blob/main/LICENSE"
+stars:
+  image: "https://img.shields.io/github/stars/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App?style=flat-square"
+  title: "GitHub Stars"
+  url: "https://github.com/chirag127/VidSummify-AI-YouTube-Video-Summarizer-Mobile-And-Web-App/stargazers"
