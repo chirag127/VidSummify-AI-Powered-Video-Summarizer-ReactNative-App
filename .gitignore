@@ -1,37 +1,50 @@
-# Node/NPM Artifacts
-node_modules
-.pnpm-debug.log
-.yarn/cache
-*.tsbuildinfo
+# Node.js / JavaScript
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
 
-# React Native / Expo Specific
-/ios/build
-/android/build
-/android/app/build
-/android/build
-.expo-shared
-/dist
-/build
-
-# Build Output
-/coverage
+# Development
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Editor/IDE Files
+# Build output
+.next/
+.nuxt/
+.vuepress/dist/
+public/build/
+public/output/
+.svelte-kit/
+
+# IDE settings
 .vscode/
 .idea/
-*.swp
+*.iml
+*.ipr
+*.iws
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macOS
 .DS_Store
 
-# Dependency Lock Files (Managed by uv/npm, keeping only essential for initial clone)
-# npm list --depth=0 > package-lock.json (If using npm, but keeping clean for a standard JS/RN repo)
+# Windows
+Thumbs.db
 
-# Environment Variables (Sensitive data)
-.env
+# Expo
+.expo/
+
+# React Native
+android/build/
+android/app/build/
+iOS/build/
+
+# Supabase / Local Auth
+.auth/
 .env.local
-
-# Supabase CLI local output
-.supabase/types
-
-# Gemini Cache/Logs (If any large caches are generated)
-*.gemini_cache
